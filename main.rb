@@ -5,6 +5,13 @@ class Shop
         @products=[]
     end
     def add_product (nname, nprice, nstock)
+        @products.map do |product|
+            if product[:name]== nname
+                product[:stock]+=nstock
+                product[:price]=nprice
+                return
+            end
+        end
         @products<<{name:nname, price:nprice, stock:nstock}
 
     end
@@ -33,9 +40,9 @@ end
 
 this_shop = Shop.new
 this_shop.add_product('apple',10,100)
+this_shop.show_products
+this_shop.add_product('apple',20,10)
 this_shop.add_product('orange',20,200)
 # this_shop.show_products
-this_shop.sale(10)
-this_shop.stock
-this_shop.purchase('orange',20)
+
 this_shop.show_products
